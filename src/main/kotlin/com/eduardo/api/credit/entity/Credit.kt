@@ -7,7 +7,7 @@ import java.time.LocalDate
 import java.util.UUID
 
 @Entity
-data class Credit (
+data class Credit(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)

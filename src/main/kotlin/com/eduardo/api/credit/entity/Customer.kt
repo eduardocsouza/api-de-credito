@@ -31,3 +31,4 @@ data class Customer(
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = arrayOf(CascadeType.REMOVE, CascadeType.PERSIST))
     var credits: List<Credit> = mutableListOf()
 )
+

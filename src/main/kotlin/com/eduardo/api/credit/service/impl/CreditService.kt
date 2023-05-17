@@ -1,7 +1,7 @@
 package com.eduardo.api.credit.service.impl
 
 import com.eduardo.api.credit.entity.Credit
-import com.eduardo.api.credit.entity.Customer
+import com.eduardo.api.credit.exception.MyExceptio
 import com.eduardo.api.credit.reppository.CreditRepository
 import com.eduardo.api.credit.service.ICreditService
 import org.springframework.stereotype.Service
@@ -15,7 +15,7 @@ class CreditService (
 
     override fun save(credit: Credit): Credit {
         credit.apply {
-            customer = customerService.finfById(credit.customer?.id!!)
+            customer = customerService.findById(credit.customer?.id!!)
         }
         return this.creditRepository.save(credit)
     }
@@ -25,7 +25,7 @@ class CreditService (
     }
 
     override fun findByCredit(customerId: Long, creditCode: UUID): Credit {
-        val credit : Credit = this.creditRepository.findByCreditCode(creditCode) ?: throw RuntimeException("CreditCode: $creditCode not found")
-        return if(credit.customer?.id == customerId) credit else throw RuntimeException("Contact Admin")
+        val credit : Credit = this.creditRepository.findByCreditCode(creditCode) ?: throw MyExceptio("CreditCode: $creditCode not found")
+        return if(credit.customer?.id == customerId) credit else throw MyExceptio("Contact Admin")
     }
 }

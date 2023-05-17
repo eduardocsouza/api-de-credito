@@ -7,9 +7,12 @@ import java.math.BigDecimal
 import java.time.LocalDate
 
 data class CreditDto(
-    val creditValue: BigDecimal,
-    val dayFirstOfInstallment: LocalDate,
+    @field:NotNull val creditValue: BigDecimal,
+    @field:Future val dayFirstOfInstallment: LocalDate,
+    @field:Max(value = 48, message = "Valos de parcela excede o permitido")
+    @field:Min(value = 1, message = "Valor mínino é 1")
     val numberOfInstallments: Int,
+    @field:NotNull
     val customerId: Long
 
 ) {

@@ -1,13 +1,15 @@
 package com.eduardo.api.credit.dto
 
 import com.eduardo.api.credit.entity.Customer
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotNull
 
 data class CustomerUpdateDto(
-    val firstName: String,
-    val lastName: String,
-    val email: String,
-    val zipCode: String,
-    val street: String
+    @field:NotNull(message = "Campo vazio") val firstName: String,
+    @field:NotNull(message = "Campo vazio") val lastName: String,
+    @field:Email(message = "E-mail incorreto") val email: String,
+    @field:NotNull(message = "Campo vazio") val zipCode: String,
+    @field:NotNull(message = "Campo vazio") val street: String
 ) {
     fun toEntity(customer: Customer): Customer{
         customer.firstName = this.firstName
